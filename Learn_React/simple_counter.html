@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Leran React</title>
+   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+</head>
+<body>
+
+    <div id="root"></div>
+    
+    
+    <script type="text/babel" >
+         function MyButton({ text, onClick, counter }) {
+
+            const myStyle = (text !== 'Reset!') ? {} : {margin: 20, display: 'block'};
+
+
+            return (
+            <button onClick={onClick} style={myStyle}>
+                {text}
+            </button>
+            );
+            }
+
+        function MyCounter({counter})
+        {
+            return(
+                <span style={{ margin: 20 }}>{counter}</span>
+            );
+        }
+
+      function HomePage()
+      {
+        const [counter, setCounter] = React.useState(0);
+        
+        function kurang()
+        {
+            setCounter(counter - 1);
+        }
+        function tambah()
+        {
+            setCounter(counter + 1);
+        }
+        function reset()
+        {
+            setCounter(0);
+        }
+
+        return(
+            <div>
+            <MyButton text={'-'} onClick={kurang} counter={counter} />
+            <MyCounter counter={counter} />
+            <MyButton text={'+'} onClick={tambah} counter={counter} />   
+            <MyButton text={'Reset!'} onClick={reset} counter={counter} />
+          </div>
+        );
+      }
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<HomePage/>);
+
+    </script>
+</body>
+</html>
